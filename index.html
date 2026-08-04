@@ -1,1040 +1,541 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Miguel Villalba — Senior Backend Developer · FHIR / Health Interoperability</title>
+<meta name="description" content="Miguel Villalba, Senior Backend Developer especializado en interoperabilidad en salud (HL7 FHIR, IPS, ICVP, GDHCN, RACSEL/PH4H). PHP, Java, Go, Python. Basado en Paraguay, disponible remoto." />
+<meta name="keywords" content="backend developer, FHIR, HL7, health interoperability, Laravel, Spring Boot, Go, Paraguay developer, healthtech" />
+<meta name="theme-color" content="#0A0F1A" />
 
-    <title>Miguel Villalba - Senior Backend & Fullstack Developer</title>
-    <meta content="Senior Backend & Fullstack Developer with 8+ years of experience in PHP, Java, Python, Node.js, Laravel, Spring Boot. Specialized in health systems and scalable web applications." name="description" />
-    <meta content="backend developer, fullstack developer, laravel, spring boot, python, php, java, healthcare systems, FHIR, Paraguay developer" name="keywords" />
+<!-- Favicons -->
+<link href="assets/img/favicon.png" rel="icon" />
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-      rel="stylesheet"
-    />
+<link href="assets/css/style.css" rel="stylesheet" />
+</head>
+<body>
 
-    <!-- Vendor CSS Files -->
-    <link
-      href="assets/vendor/bootstrap/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
-    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
-    <link
-      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
-      rel="stylesheet"
-    />
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+<!-- Preloader -->
+<div id="preloader"><span class="mono">cargando sistema…</span></div>
 
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+<!-- Icon sprite (inline, no external icon font) -->
+<svg style="display:none">
+  <symbol id="i-menu" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4.5 5-6 8-6s6.5 1.5 8 6"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><circle cx="7" cy="7" r="0.8"/><circle cx="7" cy="17" r="0.8"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.4-6.5"/><path d="M21 3v6h-6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-7.5 7-12.5A7 7 0 0 0 5 9.5C5 14.5 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.3"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v4a2 2 0 0 1-2 2C9.6 20 4 14.4 4 5a2 2 0 0 1 1-2z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="10" x2="8" y2="16"/><circle cx="8" cy="7" r="1"/><path d="M12 16v-3.5a1.8 1.8 0 0 1 3.6 0V16"/><line x1="12" y1="10" x2="12" y2="16"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M4 20l1.3-4.2A8 8 0 1 1 8.4 19L4 20z"/><path d="M8.5 9c0 3.5 3 6.5 6.5 6.5.6 0 1-.5.8-1l-.6-1.4c-.1-.4-.6-.6-1-.4l-1 .4a5 5 0 0 1-3.3-3.3l.4-1c.2-.4 0-.9-.4-1L8.9 7.2c-.5-.2-1 .2-1 .8V9z"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><path d="M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14 4v10.2a2.8 2.8 0 1 1-2-2.68"/><path d="M14 4c.4 2.2 2 3.8 4 4"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M11 10l4 2-4 2v-4z"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><path d="M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M7 7h4v4c0 3-2 5-5 5v-2c1.5 0 2.5-1 2.5-2.5H7V7z"/><path d="M15 7h4v4c0 3-2 5-5 5v-2c1.5 0 2.5-1 2.5-2.5H15V7z"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M9 8l-4 4 4 4"/><path d="M15 8l4 4-4 4"/></symbol>
+  <symbol id="i-heart-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+  <symbol id="i-cog" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14 3h-4l-.6 2.6a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-.9c.6.5 1.3.9 2 1.2L10 21h4l.6-2.6c.7-.3 1.4-.7 2-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z"/></symbol>
+  <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3"/><line x1="12" y1="15" x2="17" y2="15"/></symbol>
+</svg>
 
-    <!-- =======================================================
-  * Template Name: MyResume - v2.2.0
-  * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-  </head>
+<!-- ======= Header ======= -->
+<header class="site-header">
+  <div class="container">
+    <a href="#hero" class="brand"><span class="dot"></span>villalba<span>.dev</span></a>
 
-  <body>
-    <!-- ======= Mobile nav toggle button ======= -->
-    <button type="button" class="mobile-nav-toggle d-xl-none">
-      <i class="icofont-navigation-menu"></i>
-    </button>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#hero"><svg class="icon"><use href="#i-home"/></svg>Inicio</a>
+      <a href="#about"><svg class="icon"><use href="#i-user"/></svg>Sobre mí</a>
+      <a href="#resume"><svg class="icon"><use href="#i-briefcase"/></svg>Experiencia</a>
+      <a href="#portfolio"><svg class="icon"><use href="#i-grid"/></svg>Proyectos</a>
+      <a href="#services"><svg class="icon"><use href="#i-server"/></svg>Servicios</a>
+      <a href="#contact"><svg class="icon"><use href="#i-mail"/></svg>Contacto</a>
+    </nav>
 
-    <!-- ======= Header ======= -->
-    <header id="header" class="d-flex flex-column justify-content-center">
-      <nav class="nav-menu">
-        <ul>
-          <li class="active">
-            <a href="#hero"><i class="bx bx-home"></i> <span>Home</span></a>
-          </li>
-          <li>
-            <a href="#about"><i class="bx bx-user"></i> <span>About</span></a>
-          </li>
-          <li>
-            <a href="#resume"
-              ><i class="bx bx-file-blank"></i> <span>Resume</span></a
-            >
-          </li>
-          <li>
-            <a href="#portfolio"
-              ><i class="bx bx-book-content"></i> <span>Portfolio</span></a
-            >
-          </li>
-          <li>
-            <a href="#services"
-              ><i class="bx bx-server"></i> <span>Services</span></a
-            >
-          </li>
-          <li>
-            <a href="#testimonials"
-              ><i class="bx bx-chat"></i> <span>Testimonials</span></a
-            >
-          </li>
-          <li>
-            <a href="#contact"
-              ><i class="bx bx-envelope"></i> <span>Contact</span></a
-            >
-          </li>
-        </ul>
-      </nav>
-      <!-- .nav-menu -->
-    </header>
-    <!-- End Header -->
-
-   <!-- ======= Hero ======= -->
-<section id="hero" class="d-flex flex-column justify-content-center">
-  <div class="container" data-aos="zoom-in" data-aos-delay="100">
-    <h1>Miguel Villalba</h1>
-    <p>
-      <span class="typed" data-typed-items="Senior Backend Developer, Fullstack Developer, Healthcare Systems Specialist, FHIR Specialist"></span>
-    </p>
-    <div class="social-links">
-      <a href="https://x.com/mikerider27" class="twitter" target="_blank"><i class="bx bxl-twitter"></i></a>
-      <a href="https://github.com/MikeRider27" class="github" target="_blank"><i class="bx bxl-github"></i></a>
-      <a href="https://www.facebook.com/miguel.villalba.750" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
-      <a href="https://www.instagram.com/miguel_villaba/" class="instagram" target="_blank"><i class="bx bxl-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/miguel-villalba-673517181/" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Contactar</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-controls="navMenu" aria-expanded="false">
+        <svg class="icon icon-menu"><use href="#i-menu"/></svg>
+        <svg class="icon icon-close"><use href="#i-close"/></svg>
+      </button>
     </div>
   </div>
-</section>
-<!-- Fin Hero -->
+</header>
 
+<main>
 
-    <main id="main">
-      <!-- ======= Sobre mí ======= -->
-      <section id="about" class="about">
-        <div class="container" data-aos="fade-up">
-          <div class="section-title">
-            <h2>About Me</h2>
-            <p>
-              Senior Backend & Fullstack Developer with over 8 years of experience in web application development, 
-              specialized in PHP, Java, Python, and Node.js. Passionate about creating innovative and effective solutions 
-              that add value to organizations, with expertise in healthcare systems and government technology projects.
-            </p>
-          </div>
+  <!-- ======= Hero ======= -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="hero-kicker mono">"status": "disponible para nuevos proyectos"</span>
+        <h1>Miguel Villalba<br /><span class="last">Backend & FHIR.</span></h1>
+        <p class="hero-role mono" data-typed="Senior Backend Developer|Especialista en Interoperabilidad en Salud|HL7 FHIR · IPS · ICVP · GDHCN|PHP · Java · Go · Python"></p>
+        <p class="hero-lead">
+          Construyo y depuro los sistemas que hacen que los datos de salud se puedan intercambiar con confianza
+          entre países, hospitales y billeteras digitales — desde APIs REST hasta bundles FHIR validados contra
+          Gazelle, en producción para el Ministerio de Salud de Paraguay.
+        </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-primary">Ver proyectos<svg class="icon"><use href="#i-plus"/></svg></a>
+          <a href="#contact" class="btn btn-ghost">Hablemos<svg class="icon"><use href="#i-chat"/></svg></a>
+        </div>
 
-          <div class="row">
-            <div class="col-lg-4">
-              <img
-                src="assets/img/profile-img.png"
-                class="img-fluid"
-                alt="Miguel Villalba"
-              />
-            </div>
-            <div class="col-lg-8 pt-4 pt-lg-0 content">
-              <h3>Senior Backend &amp; Fullstack Developer</h3>
-              <p class="font-italic">
-                Committed to continuous learning and passionate about technology as a tool for positive change. 
-                Skilled in team leadership and collaboration for successful project delivery.
-              </p>
-              <div class="row">
-                <div class="col-lg-6">
-                  <ul>
-                    <li>
-                      <i class="icofont-rounded-right"></i>
-                      <strong>Phone:</strong> +595 986 755 760
-                    </li>
-                    <li>
-                      <i class="icofont-rounded-right"></i>
-                      <strong>Email:</strong> mike.mavc27@gmail.com
-                    </li>
-                    <li>
-                      <i class="icofont-rounded-right"></i>
-                      <strong>City:</strong> Ñemby, Paraguay
-                    </li>
-                    <li>
-                      <i class="icofont-rounded-right"></i>
-                      <strong>Freelance:</strong> Available
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul>
-                    <li>
-                      <i class="icofont-rounded-right"></i>
-                      <strong>Degree:</strong> Computer Engineering (in progress)
-                    </li>
-                    <li>
-                      <i class="icofont-rounded-right"></i>
-                      <strong>Languages:</strong> Spanish (Native), English (B1)
-                    </li>
-                    <li>
-                      <i class="icofont-rounded-right"></i>
-                      <strong>Experience:</strong> 8+ Years
-                    </li>
-                    <li>
-                      <i class="icofont-rounded-right"></i>
-                      <strong>Specialization:</strong> Healthcare Systems
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <p>
-                <strong>Professional Profile:</strong> I have participated in all stages of software development, 
-                from planning and design to front-end and back-end implementation, always with a focus on quality, 
-                optimization, and goal achievement.
-              </p>
-              <p>
-                <strong>Soft Skills:</strong> Problem Solving | Teamwork | Adaptability | Effective Communication | 
-                Time Management | Customer Orientation | Critical Thinking | Leadership
-              </p>
-            </div>
+        <div class="hero-meta">
+          <div>ubicación<strong>Ñemby, Paraguay</strong></div>
+          <div>experiencia<strong>9+ años</strong></div>
+          <div>foco actual<strong>FHIR / RACSEL / PH4H</strong></div>
+        </div>
+
+        <div class="hero-social">
+          <a href="https://github.com/MikeRider27" target="_blank" rel="noopener" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+          <a href="https://www.linkedin.com/in/miguel-villalba-673517181/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+          <a href="https://www.tiktok.com/@mikerider27" target="_blank" rel="noopener" aria-label="TikTok"><svg class="icon"><use href="#i-tiktok"/></svg></a>
+          <a href="https://www.youtube.com/@mikerider27" target="_blank" rel="noopener" aria-label="YouTube"><svg class="icon"><use href="#i-youtube"/></svg></a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="vitals-ring"></div>
+        <div class="vitals-ring r2"></div>
+        <div class="vitals-node n1"></div>
+        <div class="vitals-node n2"></div>
+        <div class="vitals-card">
+          <div class="top"><span>bundle_status.log</span><span class="live">live</span></div>
+          <svg class="vitals-wave" viewBox="0 0 300 90" preserveAspectRatio="none">
+            <path d="M0 45 L40 45 L55 15 L70 75 L85 45 L110 45 L125 30 L140 60 L155 45 L300 45" />
+          </svg>
+          <div class="vitals-stats">
+            <div><b>200 OK</b><span>GDHCN validator</span></div>
+            <div><b>9/9</b><span>PH4H endpoints</span></div>
+            <div><b>0</b><span>bundles rechazados</span></div>
           </div>
         </div>
-      </section>
-      <!-- Fin Sobre mí -->
+      </div>
+    </div>
+  </section>
 
-      <!-- ======= Hechos Destacados ======= -->
-      <section id="facts" class="facts">
-        <div class="container" data-aos="fade-up">
-          <div class="section-title">
-            <h2>Key Achievements</h2>
-            <p>
-              Throughout my career, I have contributed to numerous critical projects, 
-              delivering efficient solutions and helping public and private institutions 
-              improve their digital processes.
-            </p>
+  <!-- ======= About ======= -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">"section": "about"</span>
+        <h2>Backend sólido, con vocación por la interoperabilidad</h2>
+        <p>9+ años diseñando e implementando sistemas de salud pública en Paraguay, hoy enfocado en llevar esa
+          experiencia a equipos de Healthtech y Fintech remotos.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-photo" data-reveal>
+          <div class="frame"><img src="assets/img/profile-img.png" alt="Foto de Miguel Villalba" loading="lazy" /></div>
+          <div class="tag mono">años en salud pública<b>9+</b></div>
+        </div>
+
+        <div class="about-copy" data-reveal>
+          <p class="lede">Senior Backend & Health Interoperability Developer en la Dirección General de TICs del Ministerio de Salud Pública de Paraguay (DGTIC / MSPBS).</p>
+          <p>Participé en todas las etapas del desarrollo — planificación, diseño, backend y, cuando hace falta, frontend —
+            siempre con foco en calidad, rendimiento y en que el sistema siga funcionando cuando de verdad importa: en un
+            centro de salud, en una frontera, en medio de un connectathon.</p>
+          <p>Actualmente trabajo en el ecosistema RACSEL / PH4H: emisión y verificación de credenciales de salud (IPS, ICVP, MEOW),
+            interconsultas transfronterizas, hardening de nodos HAPI FHIR y depuración de validación de bundles contra Gazelle.</p>
+
+          <div class="fact-grid">
+            <div class="fact"><div class="k">Rol actual</div><div class="v">Senior Backend Developer</div></div>
+            <div class="fact"><div class="k">Organización</div><div class="v">DGTIC · MSPBS Paraguay</div></div>
+            <div class="fact"><div class="k">Idiomas</div><div class="v">Español (nativo), Inglés (B1)</div></div>
+            <div class="fact"><div class="k">Modalidad</div><div class="v">Remoto / Freelance disponible</div></div>
           </div>
 
-          <div class="row">
-            <div class="col-lg-3 col-md-6">
-              <div class="count-box">
-                <i class="icofont-hospital"></i>
-                <span data-toggle="counter-up">5</span>
-                <p>National Health Systems</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-              <div class="count-box">
-                <i class="icofont-document-folder"></i>
-                <span data-toggle="counter-up">50+</span>
-                <p>Projects Completed</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-              <div class="count-box">
-                <i class="icofont-code"></i>
-                <span data-toggle="counter-up">8+</span>
-                <p>Years Experience</p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-              <div class="count-box">
-                <i class="icofont-users-alt-5"></i>
-                <span data-toggle="counter-up">15+</span>
-                <p>Teams Collaborated</p>
-              </div>
-            </div>
+          <div class="soft-list">
+            <span>Resolución de problemas</span>
+            <span>Trabajo en equipo</span>
+            <span>Comunicación efectiva</span>
+            <span>Gestión del tiempo</span>
+            <span>Pensamiento crítico</span>
+            <span>Liderazgo técnico</span>
           </div>
         </div>
-      </section>
-      <!-- Fin Hechos Destacados -->
+      </div>
+    </div>
+  </section>
 
-      <!-- ======= Habilidades ======= -->
-      <section id="skills" class="skills section-bg">
-        <div class="container" data-aos="fade-up">
-          <div class="section-title">
-            <h2>Technical Skills</h2>
-            <p>
-              Extensive experience with modern technologies and frameworks for both frontend and backend development.
-            </p>
-          </div>
+  <!-- ======= Stats ======= -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="stats-grid" data-reveal>
+        <div class="stat"><div class="num"><span data-count="5">0</span></div><div class="label">Sistemas nacionales de salud</div></div>
+        <div class="stat"><div class="num"><span data-count="50" data-suffix="+">0</span></div><div class="label">Proyectos entregados</div></div>
+        <div class="stat"><div class="num"><span data-count="9" data-suffix="+">0</span></div><div class="label">Años de experiencia</div></div>
+        <div class="stat"><div class="num"><span data-count="8" data-suffix="+">0</span></div><div class="label">Perfiles FHIR implementados</div></div>
+      </div>
+    </div>
+  </section>
 
-          <div class="row skills-content">
-            <div class="col-lg-6">
-              <div class="progress">
-                <span class="skill">PHP & Laravel <i class="val">90%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="90"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
+  <!-- ======= Skills ======= -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">"section": "skills"</span>
+        <h2>Stack técnico</h2>
+        <p>Backend primero, con la interoperabilidad en salud como especialización — y el resto del stack necesario
+          para llevar un sistema de punta a punta.</p>
+      </div>
 
-              <div class="progress">
-                <span class="skill">Java & Spring <i class="val">85%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="85"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-
-              <div class="progress">
-                <span class="skill">Python <i class="val">80%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="80"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-
-              <div class="progress">
-                <span class="skill">PostgreSQL <i class="val">85%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="85"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-
-              <div class="progress">
-                <span class="skill">Docker <i class="val">80%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="80"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6">
-              <div class="progress">
-                <span class="skill">Node.js <i class="val">75%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="75"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-
-              <div class="progress">
-                <span class="skill">ReactJS <i class="val">70%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="70"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-
-              <div class="progress">
-                <span class="skill">MySQL <i class="val">85%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="85"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-
-              <div class="progress">
-                <span class="skill">Git <i class="val">90%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="90"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-
-              <div class="progress">
-                <span class="skill">Linux/Unix <i class="val">80%</i></span>
-                <div class="progress-bar-wrap">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    aria-valuenow="80"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-            </div>
+      <div class="skills-grid">
+        <div class="skill-card" data-reveal>
+          <div class="head"><div class="ico"><svg class="icon"><use href="#i-server"/></svg></div><h3>Backend & Frameworks</h3></div>
+          <div class="chip-row">
+            <span class="chip">PHP <span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+            <span class="chip">Laravel <span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+            <span class="chip">Java / Spring <span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
+            <span class="chip">Go <span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
+            <span class="chip">Python <span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
+            <span class="chip">Node.js <span class="lv"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></span>
           </div>
         </div>
-      </section>
-      <!-- Fin Habilidades -->
 
-      <!-- ======= Currículum ======= -->
-      <section id="resume" class="resume">
-        <div class="container" data-aos="fade-up">
-          <div class="section-title">
-            <h2>Professional Experience</h2>
-            <p>
-              Over 8 years of experience building scalable web solutions for public and private sectors, 
-              specializing in healthcare systems and critical infrastructure.
-            </p>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-6">
-              <h3 class="resume-title">Professional Summary</h3>
-              <div class="resume-item pb-0">
-                <h4>Miguel Villalba</h4>
-                <p><em>Senior Backend and Fullstack Developer with proven experience in Laravel, Spring Boot, 
-                  Java, Python, and PostgreSQL. Currently working on interoperability and healthcare systems 
-                  for the Government of Paraguay.</em></p>
-                <ul>
-                  <li>Ñemby, Paraguay</li>
-                  <li>+595 986 755 760</li>
-                  <li>mike.mavc27@gmail.com</li>
-                  <li><a href="https://www.linkedin.com/in/miguel-villalba-673517181/" target="_blank">LinkedIn Profile</a></li>
-                </ul>
-              </div>
-
-              <h3 class="resume-title">Education</h3>
-              <div class="resume-item">
-                <h4>Computer Engineering (in progress)</h4>
-                <h5>2020 - 2025</h5>
-                <p><em>Universidad Tecnológica Intercontinental, Paraguay</em></p>
-                <p>Currently developing final thesis for degree completion.</p>
-              </div>
-              <div class="resume-item">
-                <h4>Bachelor's Degree in Computer Science</h4>
-                <h5>2011 - 2019</h5>
-                <p><em>Universidad Tecnológica Intercontinental, Paraguay</em></p>
-              </div>
-
-              <h3 class="resume-title">Certifications & Courses</h3>
-              <div class="resume-item">
-                <ul>
-                  <li><strong>English Language</strong> - Air Force Language Study Center (2024)</li>
-                  <li><strong>Digital Health Systems Coding Language</strong> - Association of Public Health Laboratories (2024)</li>
-                  <li><strong>Docker for Beginners</strong> - Kodekloud (2020)</li>
-                  <li><strong>Advanced Python</strong> - Udemy (2019)</li>
-                  <li><strong>Advanced PHP</strong> - Udemy (2018)</li>
-                  <li><strong>Business Model Canvas Method</strong> - Facultad Politécnica UNA (2014)</li>
-                  <li><strong>Start-Up Weekend Asunción (SWA)</strong> - Facultad Politécnica UNA (2013)</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-lg-6">
-              <h3 class="resume-title">Professional Experience</h3>
-              
-              <div class="resume-item">
-                <h4>Senior Developer</h4>
-                <h5>2019 – Present</h5>
-                <p><em>Directorate General of Information and Communication Technology - Ministry of Public Health and Social Welfare</em></p>
-                <ul>
-                  <li>Development and maintenance of the COVID-19 Consultation Line 154 in Paraguay, used for test scheduling, case tracking, patient support, and pregnant women monitoring.</li>
-                  <li>Design, implementation, and management of VACUNATE, a national platform for COVID-19 vaccine scheduling and management.</li>
-                  <li>Development and maintenance of SICAM system for calendar and teacher attendance information management.</li>
-                  <li>Management and optimization of SAU system for improved user service.</li>
-                  <li>Planning, design, and implementation of new modules and functionalities across multiple systems, adapting them to healthcare sector requirements.</li>
-                </ul>
-                <p><strong>Tech Stack:</strong> Docker, Nginx, Apache, Linux Commands, PHP, Laravel, Java, Strut2, Spring, PostgreSQL, MySQL, HTML, CSS, JavaScript, jQuery, ReactJS, Python, Git, Trello, Slack</p>
-              </div>
-
-              <div class="resume-item">
-                <h4>Senior Backend Developer</h4>
-                <h5>2024 – 2025</h5>
-                <p><em>ADIGI EAS</em></p>
-                <ul>
-                  <li>Design, development, and maintenance of a wholesale sales system, ensuring efficient integration with other enterprise systems like SAP and multiple external APIs.</li>
-                  <li>Comprehensive task management including bug identification and resolution, planning, and design of solutions for new functional and technical requirements.</li>
-                  <li>Implementation and deployment of changes in testing and production environments, ensuring stability and compliance with quality standards.</li>
-                </ul>
-                <p><strong>Tech Stack:</strong> Docker, Nginx, Apache, Linux Commands, PHP, Laravel, MySQL, DBeaver, Digital Ocean droplets, database clusters, Git, Postman, Zoho, Slack</p>
-              </div>
-
-              <div class="resume-item">
-                <h4>FullStack Developer</h4>
-                <h5>2018 – 2019</h5>
-                <p><em>Freelance</em></p>
-                <ul>
-                  <li><strong>Restaurant Sales Management System:</strong> Development and implementation of a comprehensive system optimizing billing processes, inventory management, and report generation, improving restaurant operational efficiency.</li>
-                  <li><strong>Water Service Management System:</strong> Design and development of a platform for efficient customer administration, billing, and payments in a water service company.</li>
-                </ul>
-                <p><strong>Tech Stack:</strong> Java, Spring, PostgreSQL, MySQL, HTML, CSS, JavaScript, jQuery, Git, Trello</p>
-              </div>
-            </div>
+        <div class="skill-card" data-reveal>
+          <div class="head"><div class="ico"><svg class="icon"><use href="#i-heart-pulse"/></svg></div><h3>Interoperabilidad en salud</h3></div>
+          <div class="chip-row">
+            <span class="chip">HL7 FHIR R4</span>
+            <span class="chip">IPS / ICVP / MEOW</span>
+            <span class="chip">HAPI FHIR</span>
+            <span class="chip">IHE MHD / ITI-65</span>
+            <span class="chip">RACSEL / PH4H</span>
+            <span class="chip">GDHCN</span>
           </div>
         </div>
-      </section>
-      <!-- Fin Currículum -->
 
-      <!-- ======= Portafolio ======= -->
-      <section id="portfolio" class="portfolio section-bg">
-        <div class="container" data-aos="fade-up">
-          <div class="section-title">
-            <h2>Portfolio</h2>
-            <p>
-              Here are some of the projects I've worked on, both as a freelancer and in public institutions. 
-              From mobile applications to healthcare and infrastructure management systems.
-            </p>
+        <div class="skill-card" data-reveal>
+          <div class="head"><div class="ico"><svg class="icon"><use href="#i-database"/></svg></div><h3>Datos & Infraestructura</h3></div>
+          <div class="chip-row">
+            <span class="chip">PostgreSQL <span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+            <span class="chip">MySQL <span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+            <span class="chip">Docker <span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
+            <span class="chip">Nginx / Apache</span>
+            <span class="chip">Linux</span>
+            <span class="chip">Git</span>
+          </div>
+        </div>
+
+        <div class="skill-card" data-reveal>
+          <div class="head"><div class="ico"><svg class="icon"><use href="#i-shield"/></svg></div><h3>Seguridad & Frontend</h3></div>
+          <div class="chip-row">
+            <span class="chip">ModSecurity / WAF</span>
+            <span class="chip">Auditorías de seguridad</span>
+            <span class="chip">ReactJS</span>
+            <span class="chip">JavaScript / jQuery</span>
+            <span class="chip">HTML / CSS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Resume ======= -->
+  <section id="resume" class="section-alt">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">"section": "experience"</span>
+        <h2>Experiencia profesional</h2>
+        <p>9+ años construyendo soluciones web escalables para el sector público y privado, con especialización en
+          sistemas de salud e infraestructura crítica.</p>
+      </div>
+
+      <div class="resume-columns">
+        <div class="resume-side" data-reveal>
+          <h3>Educación</h3>
+          <div class="edu-item">
+            <span class="when">2020 — presente</span>
+            <h4>Ingeniería en Informática (en curso)</h4>
+            <p>Universidad Tecnológica Intercontinental, Paraguay · desarrollando tesis final</p>
+          </div>
+          <div class="edu-item">
+            <span class="when">2011 — 2019</span>
+            <h4>Licenciatura en Ciencias de la Computación</h4>
+            <p>Universidad Tecnológica Intercontinental, Paraguay</p>
           </div>
 
-          <div class="row">
-            <div
-              class="col-lg-12 d-flex justify-content-center"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <ul id="portfolio-flters">
-                <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-health">Healthcare</li>
-                <li data-filter=".filter-web">Web Applications</li>
-                <li data-filter=".filter-systems">Enterprise Systems</li>
+          <h3>Certificaciones & Cursos</h3>
+          <ul class="cert-list">
+            <li><svg class="icon"><use href="#i-plus"/></svg><span><b>Idioma Inglés</b> — Centro de Estudios de Idiomas, Fuerza Aérea (2024)</span></li>
+            <li><svg class="icon"><use href="#i-plus"/></svg><span><b>Digital Health Systems Coding</b> — Association of Public Health Laboratories (2024)</span></li>
+            <li><svg class="icon"><use href="#i-plus"/></svg><span><b>Docker for Beginners</b> — KodeKloud (2020)</span></li>
+            <li><svg class="icon"><use href="#i-plus"/></svg><span><b>Python Avanzado</b> — Udemy (2019)</span></li>
+            <li><svg class="icon"><use href="#i-plus"/></svg><span><b>PHP Avanzado</b> — Udemy (2018)</span></li>
+            <li><svg class="icon"><use href="#i-plus"/></svg><span><b>Business Model Canvas</b> — Facultad Politécnica UNA (2014)</span></li>
+            <li><svg class="icon"><use href="#i-plus"/></svg><span><b>Start-Up Weekend Asunción</b> — Facultad Politécnica UNA (2013)</span></li>
+          </ul>
+        </div>
+
+        <div class="resume-main" data-reveal>
+          <h3>Trayectoria</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <span class="when">2019 — presente</span>
+              <h4>Senior Developer</h4>
+              <p class="org">Dirección General de TICs (DGTIC) — Ministerio de Salud Pública y Bienestar Social</p>
+              <ul>
+                <li>Desarrollo y mantenimiento de la Línea de Consulta COVID-19 (154): agendamiento de test, seguimiento de casos y monitoreo de embarazadas.</li>
+                <li>Diseño, implementación y gestión de VACUNATE, la plataforma nacional de agendamiento y gestión de vacunas COVID-19.</li>
+                <li>Implementación de credenciales de salud digital (IPS, ICVP, MEOW) e interconsultas transfronterizas para RACSEL/PH4H.</li>
+                <li>Hardening de nodos HAPI FHIR (WAF/ModSecurity), debugging de validación de bundles contra Gazelle y firma GDHCN.</li>
               </ul>
-            </div>
-          </div>
-
-          <div
-            class="row portfolio-container"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div class="col-lg-4 col-md-6 portfolio-item filter-health">
-              <div class="portfolio-wrap">
-                <img
-                  src="assets/img/vacunate-system.png"
-                  class="img-fluid"
-                  alt="VACUNATE System"
-                />
-                <div class="portfolio-info">
-                  <h4>VACUNATE Platform</h4>
-                  <p>National COVID-19 Vaccine Management System</p>
-                  <div class="portfolio-links">
-                    <a
-                      href="assets/img/vacunate-system.png"
-                      data-gall="portfolioGallery"
-                      class="venobox"
-                      title="VACUNATE Platform"
-                      ><i class="bx bx-plus"></i
-                    ></a>
-                    <a
-                      href="portfolio-details-vacunate.html"
-                      class="venobox"
-                      data-vbtype="iframe"
-                      title="Project Details"
-                      ><i class="bx bx-link"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
+              <p class="tl-stack"><b>Stack:</b> PHP, Laravel, Java, Struts2, Spring, Go, Python, PostgreSQL, MySQL, Docker, Nginx, HAPI FHIR</p>
             </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-health">
-              <div class="portfolio-wrap">
-                <img
-                  src="assets/img/covid-154-system.png"
-                  class="img-fluid"
-                  alt="COVID-19 Line 154"
-                />
-                <div class="portfolio-info">
-                  <h4>COVID-19 Consultation Line 154</h4>
-                  <p>National Telehealth System</p>
-                  <div class="portfolio-links">
-                    <a
-                      href="assets/img/covid-154-system.png"
-                      data-gall="portfolioGallery"
-                      class="venobox"
-                      title="COVID-19 Line 154"
-                      ><i class="bx bx-plus"></i
-                    ></a>
-                    <a
-                      href="portfolio-details-covid154.html"
-                      class="venobox"
-                      data-vbtype="iframe"
-                      title="Project Details"
-                      ><i class="bx bx-link"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
+            <div class="tl-item">
+              <span class="when">2024 — 2025</span>
+              <h4>Senior Backend Developer</h4>
+              <p class="org">ADIGI EAS</p>
+              <ul>
+                <li>Diseño, desarrollo y mantenimiento de un sistema de ventas mayoristas, integrado con SAP y múltiples APIs externas.</li>
+                <li>Gestión integral de tareas: identificación y resolución de bugs, planificación y diseño de soluciones para nuevos requerimientos.</li>
+                <li>Despliegue de cambios en ambientes de testing y producción, asegurando estabilidad y estándares de calidad.</li>
+              </ul>
+              <p class="tl-stack"><b>Stack:</b> PHP, Laravel, MySQL, Digital Ocean, Git, Postman</p>
             </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-systems">
-              <div class="portfolio-wrap">
-                <img
-                  src="assets/img/wholesale-system.png"
-                  class="img-fluid"
-                  alt="Wholesale Sales System"
-                />
-                <div class="portfolio-info">
-                  <h4>Wholesale Sales System</h4>
-                  <p>Enterprise System with SAP Integration</p>
-                  <div class="portfolio-links">
-                    <a
-                      href="assets/img/wholesale-system.png"
-                      data-gall="portfolioGallery"
-                      class="venobox"
-                      title="Wholesale Sales System"
-                      ><i class="bx bx-plus"></i
-                    ></a>
-                    <a
-                      href="portfolio-details-wholesale.html"
-                      class="venobox"
-                      data-vbtype="iframe"
-                      title="Project Details"
-                      ><i class="bx bx-link"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-              <div class="portfolio-wrap">
-                <img
-                  src="assets/img/restaurant-system.jpg"
-                  class="img-fluid"
-                  alt="Restaurant Management System"
-                />
-                <div class="portfolio-info">
-                  <h4>Restaurant Management</h4>
-                  <p>Sales, Inventory & Reporting System</p>
-                  <div class="portfolio-links">
-                    <a
-                      href="assets/img/restaurant-system.jpg"
-                      data-gall="portfolioGallery"
-                      class="venobox"
-                      title="Restaurant Management System"
-                      ><i class="bx bx-plus"></i
-                    ></a>
-                    <a
-                      href="portfolio-details-restaurant.html"
-                      class="venobox"
-                      data-vbtype="iframe"
-                      title="Project Details"
-                      ><i class="bx bx-link"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-systems">
-              <div class="portfolio-wrap">
-                <img
-                  src="assets/img/water-service-system.jpg"
-                  class="img-fluid"
-                  alt="Water Service Management"
-                />
-                <div class="portfolio-info">
-                  <h4>Water Service Management</h4>
-                  <p>Customer & Billing Management Platform</p>
-                  <div class="portfolio-links">
-                    <a
-                      href="assets/img/water-service-system.jpg"
-                      data-gall="portfolioGallery"
-                      class="venobox"
-                      title="Water Service Management"
-                      ><i class="bx bx-plus"></i
-                    ></a>
-                    <a
-                      href="portfolio-details-water.html"
-                      class="venobox"
-                      data-vbtype="iframe"
-                      title="Project Details"
-                      ><i class="bx bx-link"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-health">
-              <div class="portfolio-wrap">
-                <img
-                  src="assets/img/sicam-system.jpg"
-                  class="img-fluid"
-                  alt="SICAM System"
-                />
-                <div class="portfolio-info">
-                  <h4>SICAM System</h4>
-                  <p>Teacher Calendar & Attendance Management</p>
-                  <div class="portfolio-links">
-                    <a
-                      href="assets/img/sicam-system.jpg"
-                      data-gall="portfolioGallery"
-                      class="venobox"
-                      title="SICAM System"
-                      ><i class="bx bx-plus"></i
-                    ></a>
-                    <a
-                      href="portfolio-details-sicam.html"
-                      class="venobox"
-                      data-vbtype="iframe"
-                      title="Project Details"
-                      ><i class="bx bx-link"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
+            <div class="tl-item">
+              <span class="when">2018 — 2019</span>
+              <h4>Fullstack Developer</h4>
+              <p class="org">Freelance</p>
+              <ul>
+                <li><b>Sistema de Gestión para Restaurante:</b> facturación, inventario y generación de reportes.</li>
+                <li><b>Sistema de Gestión de Servicio de Agua:</b> administración de clientes, facturación y pagos.</li>
+              </ul>
+              <p class="tl-stack"><b>Stack:</b> Java, Spring, PostgreSQL, MySQL, HTML, CSS, JavaScript, jQuery</p>
             </div>
           </div>
         </div>
-      </section>
-      <!-- Fin Portafolio -->
-
-      <!-- ======= Servicios ======= -->
-      <section id="services" class="services section-bg">
-        <div class="container" data-aos="fade-up">
-          <div class="section-title">
-            <h2>Services</h2>
-            <p>
-              I offer personalized, efficient, and scalable digital solutions, combining technical expertise with 
-              a focus on results. From robust APIs to user-friendly interfaces, I provide comprehensive support 
-              for your projects.
-            </p>
-          </div>
-
-          <div class="row">
-            <div
-              class="col-lg-4 col-md-6 d-flex align-items-stretch"
-              data-aos="zoom-in"
-              data-aos-delay="100"
-            >
-              <div class="icon-box iconbox-blue">
-                <div class="icon">
-                  <i class="bx bx-code-alt"></i>
-                </div>
-                <h4><a href="#">Backend Development</a></h4>
-                <p>
-                  Design and implementation of REST APIs and robust services using Laravel, Spring Boot, Flask, and Node.js.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"
-              data-aos="zoom-in"
-              data-aos-delay="200"
-            >
-              <div class="icon-box iconbox-orange">
-                <div class="icon">
-                  <i class="bx bx-health"></i>
-                </div>
-                <h4><a href="#">Healthcare Systems</a></h4>
-                <p>
-                  Development of specialized healthcare systems, telehealth platforms, and FHIR-based interoperability solutions.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            >
-              <div class="icon-box iconbox-pink">
-                <div class="icon">
-                  <i class="bx bx-data"></i>
-                </div>
-                <h4><a href="#">Database Design & Optimization</a></h4>
-                <p>
-                  Modeling, normalization, and optimization of relational databases like PostgreSQL and MySQL.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4"
-              data-aos="zoom-in"
-              data-aos-delay="100"
-            >
-              <div class="icon-box iconbox-yellow">
-                <div class="icon">
-                  <i class="bx bx-shield-quarter"></i>
-                </div>
-                <h4><a href="#">System Integration</a></h4>
-                <p>
-                  Integration of enterprise systems with external APIs, SAP, and other business platforms.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4"
-              data-aos="zoom-in"
-              data-aos-delay="200"
-            >
-              <div class="icon-box iconbox-red">
-                <div class="icon">
-                  <i class="bx bx-cube"></i>
-                </div>
-                <h4><a href="#">Fullstack Development</a></h4>
-                <p>
-                  Complete web applications with responsive frontend (React, Vue) and scalable backend solutions.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            >
-              <div class="icon-box iconbox-teal">
-                <div class="icon">
-                  <i class="bx bx-cog"></i>
-                </div>
-                <h4><a href="#">DevOps & Deployment</a></h></h4>
-                <p>
-                  Containerization with Docker, CI/CD pipelines, deployment, and monitoring of development environments.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Fin Servicios -->
-
-     <!-- ======= Testimonios ======= -->
-<section id="testimonials" class="testimonials section-bg">
-  <div class="container" data-aos="fade-up">
-    <div class="section-title">
-      <h2>Testimonials</h2>
-      <p>Feedback from colleagues and clients I've worked with on various projects. Client satisfaction and service quality are my top priorities.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="owl-carousel testimonials-carousel" data-aos="zoom-in" data-aos-delay="100">
-
-      <div class="testimonial-item">
-        <img src="assets/img/testimonials/health-minister.jpg" class="testimonial-img" alt="Ministry of Health Director">
-        <h3>Ministry of Health Director</h3>
-        <h4>Director of Technology Projects</h4>
-        <p>
-          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Miguel was instrumental in implementing our national health surveillance systems. His technical knowledge and commitment to quality made the difference in the project's success.
-          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-        </p>
+  <!-- ======= Portfolio ======= -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">"section": "portfolio"</span>
+        <h2>Proyectos</h2>
+        <p>Sistemas que diseñé e implementé, tanto en instituciones públicas como de forma independiente — de
+          plataformas nacionales de salud a sistemas empresariales.</p>
       </div>
 
-      <div class="testimonial-item">
-        <img src="assets/img/testimonials/enterprise-client.jpg" class="testimonial-img" alt="Enterprise Client">
-        <h3>Enterprise IT Manager</h3>
-        <h4>Wholesale Distribution Company</h4>
-        <p>
-          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Miguel's work on our wholesale system integration was exceptional. His ability to understand complex business requirements and translate them into efficient technical solutions is remarkable.
-          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-        </p>
+      <div class="filter-bar" data-reveal>
+        <button class="active" data-filter="*">Todos</button>
+        <button data-filter="health">Salud</button>
+        <button data-filter="web">Aplicaciones web</button>
+        <button data-filter="systems">Sistemas empresariales</button>
       </div>
 
-      <div class="testimonial-item">
-        <img src="assets/img/testimonials/health-entrepreneur.jpg" class="testimonial-img" alt="Healthcare Entrepreneur">
-        <h3>Healthcare Entrepreneur</h3>
-        <h4>Telehealth Startup Founder</h4>
-        <p>
-          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          We trusted Miguel with our platform development and he exceeded expectations. Always proactive, professional, and with excellent problem-solving skills.
-          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-        </p>
+      <div class="project-grid" data-reveal>
+
+        <article class="project-card" data-category="health">
+          <div class="project-media">
+            <img src="assets/img/vacunate-system.png" alt="Plataforma VACUNATE" loading="lazy" />
+            <span class="project-tag mono">salud</span>
+          </div>
+          <div class="project-body">
+            <h4>VACUNATE</h4>
+            <p>Plataforma nacional de agendamiento y gestión de vacunas COVID-19, utilizada por todo el sistema de salud pública de Paraguay.</p>
+            <p class="stack">PHP · Laravel · MySQL · PostgreSQL</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="health">
+          <div class="project-media">
+            <img src="assets/img/covid-154-system.png" alt="Línea de Consulta COVID-19 154" loading="lazy" />
+            <span class="project-tag mono">salud</span>
+          </div>
+          <div class="project-body">
+            <h4>Línea de Consulta 154</h4>
+            <p>Sistema nacional de telesalud para agendamiento de test, seguimiento de casos y soporte a pacientes durante la pandemia.</p>
+            <p class="stack">PHP · Java · Struts2 · PostgreSQL</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="health">
+          <div class="project-media">
+            <div class="glyph"><svg class="icon"><use href="#i-heart-pulse"/></svg></div>
+            <span class="project-tag mono">salud · FHIR</span>
+          </div>
+          <div class="project-body">
+            <h4>Visores FHIR (IPS / RDA)</h4>
+            <p>Visores de bundles FHIR (MedicationRequest, Encounter, DiagnosticReport, Observation) para credenciales de salud RACSEL/PH4H, con capa de resumen para clínicos.</p>
+            <p class="stack">PHP · FHIR R4 · HAPI FHIR</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="systems">
+          <div class="project-media">
+            <img src="assets/img/wholesale-system.png" alt="Sistema de Ventas Mayoristas" loading="lazy" />
+            <span class="project-tag mono">empresarial</span>
+          </div>
+          <div class="project-body">
+            <h4>Sistema de Ventas Mayoristas</h4>
+            <p>Sistema empresarial con integración a SAP y múltiples APIs externas para gestión de ventas y stock.</p>
+            <p class="stack">PHP · Laravel · MySQL · SAP</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="systems">
+          <div class="project-media">
+            <div class="glyph"><svg class="icon"><use href="#i-layers"/></svg></div>
+            <span class="project-tag mono">empresarial</span>
+          </div>
+          <div class="project-body">
+            <h4>SICAM</h4>
+            <p>Sistema de gestión de calendario y asistencia docente para el sector educativo.</p>
+            <p class="stack">PHP · MySQL · JavaScript</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="web">
+          <div class="project-media">
+            <div class="glyph"><svg class="icon"><use href="#i-terminal"/></svg></div>
+            <span class="project-tag mono">web</span>
+          </div>
+          <div class="project-body">
+            <h4>Gestión de Restaurante</h4>
+            <p>Facturación, inventario y generación de reportes para optimizar la operación de un restaurante.</p>
+            <p class="stack">Java · Spring · PostgreSQL</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Services ======= -->
+  <section id="services" class="section-alt">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">"section": "services"</span>
+        <h2>Servicios</h2>
+        <p>Soluciones digitales personalizadas, eficientes y escalables — de APIs robustas a integraciones complejas de sistemas.</p>
       </div>
 
-      <div class="testimonial-item">
-        <img src="assets/img/testimonials/team-lead.jpg" class="testimonial-img" alt="Team Lead">
-        <h3>Development Team Lead</h3>
-        <h4>ADIGI EAS</h4>
-        <p>
-          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Working with Miguel has been an excellent experience. His ability to lead technical projects and deliver functional, stable results is admirable.
-          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-        </p>
+      <div class="services-grid">
+        <div class="service-card" data-reveal>
+          <div class="ico"><svg class="icon"><use href="#i-code"/></svg></div>
+          <h4>Backend Development</h4>
+          <p>Diseño e implementación de APIs REST y servicios robustos con Laravel, Spring Boot, Flask y Node.js.</p>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="ico"><svg class="icon"><use href="#i-heart-pulse"/></svg></div>
+          <h4>Sistemas de Salud</h4>
+          <p>Desarrollo de sistemas de salud especializados, plataformas de telesalud y soluciones de interoperabilidad basadas en FHIR.</p>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="ico"><svg class="icon"><use href="#i-database"/></svg></div>
+          <h4>Diseño de Bases de Datos</h4>
+          <p>Modelado, normalización y optimización de bases de datos relacionales como PostgreSQL y MySQL.</p>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="ico"><svg class="icon"><use href="#i-shield"/></svg></div>
+          <h4>Integración de Sistemas</h4>
+          <p>Integración de sistemas empresariales con APIs externas, SAP y otras plataformas de negocio.</p>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="ico"><svg class="icon"><use href="#i-layers"/></svg></div>
+          <h4>Fullstack Development</h4>
+          <p>Aplicaciones web completas, con frontend responsivo (React, Vue) y backend escalable.</p>
+        </div>
+        <div class="service-card" data-reveal>
+          <div class="ico"><svg class="icon"><use href="#i-cog"/></svg></div>
+          <h4>DevOps & Despliegue</h4>
+          <p>Contenerización con Docker, pipelines CI/CD, despliegue y monitoreo de ambientes de desarrollo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======= Contact ======= -->
+  <section id="contact" class="section-alt">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">"section": "contact"</span>
+        <h2>Hablemos de tu proyecto</h2>
+        <p>¿Buscás sumar a alguien con experiencia real en sistemas de salud e interoperabilidad, o simplemente
+          querés charlar sobre FHIR? Elegí el canal que prefieras — te respondo directamente.</p>
       </div>
 
-      <div class="testimonial-item">
-        <img src="assets/img/testimonials/colleague.jpg" class="testimonial-img" alt="Colleague">
-        <h3>Senior Developer</h3>
-        <h4>Ministry of Health Colleague</h4>
-        <p>
-          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          I've worked with Miguel on multiple national health projects. He not only understands technology but also comprehends user needs, making him valuable to any team.
-          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-        </p>
+      <div class="contact-cards" data-reveal>
+        <a class="contact-card" href="https://wa.me/595986755760" target="_blank" rel="noopener">
+          <div class="ico"><svg class="icon"><use href="#i-whatsapp"/></svg></div>
+          <h4>WhatsApp</h4>
+          <p>+595 986 755 760</p>
+          <span class="cta">Enviar mensaje<svg class="icon"><use href="#i-arrow-right"/></svg></span>
+        </a>
+
+        <a class="contact-card" href="mailto:mike.mavc27@gmail.com">
+          <div class="ico"><svg class="icon"><use href="#i-mail"/></svg></div>
+          <h4>Email</h4>
+          <p>mike.mavc27@gmail.com</p>
+          <span class="cta">Escribir email<svg class="icon"><use href="#i-arrow-right"/></svg></span>
+        </a>
+
+        <a class="contact-card" href="https://www.linkedin.com/in/miguel-villalba-673517181/" target="_blank" rel="noopener">
+          <div class="ico"><svg class="icon"><use href="#i-linkedin"/></svg></div>
+          <h4>LinkedIn</h4>
+          <p>/in/miguel-villalba-673517181</p>
+          <span class="cta">Conectar<svg class="icon"><use href="#i-arrow-right"/></svg></span>
+        </a>
       </div>
 
+      <div class="contact-location mono" data-reveal>
+        <svg class="icon"><use href="#i-pin"/></svg> Ñemby, Paraguay
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======= Footer ======= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#hero" class="brand"><span class="dot"></span>villalba<span>.dev</span></a>
+        <p>Senior Backend Developer especializado en interoperabilidad en salud (HL7 FHIR), sistemas empresariales y soluciones web escalables.</p>
+      </div>
+      <div class="footer-social">
+        <a href="https://github.com/MikeRider27" target="_blank" rel="noopener" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+        <a href="https://www.linkedin.com/in/miguel-villalba-673517181/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+        <a href="https://www.tiktok.com/@mikerider27" target="_blank" rel="noopener" aria-label="TikTok"><svg class="icon"><use href="#i-tiktok"/></svg></a>
+        <a href="https://www.youtube.com/@mikerider27" target="_blank" rel="noopener" aria-label="YouTube"><svg class="icon"><use href="#i-youtube"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Miguel Villalba. Todos los derechos reservados.</span>
+      <span>Diseñado &amp; construido a medida</span>
     </div>
   </div>
-</section>
-<!-- Fin Testimonios -->
+</footer>
 
+<a href="#hero" class="to-top" aria-label="Volver arriba"><svg class="icon"><use href="#i-arrow-up"/></svg></a>
 
-     <!-- ======= Contacto ======= -->
-<section id="contact" class="contact">
-  <div class="container" data-aos="fade-up">
-
-    <div class="section-title">
-      <h2>Contact</h2>
-      <p>Would you like to work with me or have any questions? Feel free to reach out. I'm available for freelance projects, collaborations, or job opportunities.</p>
-    </div>
-
-    <div class="row mt-1">
-      <div class="col-lg-4">
-        <div class="info">
-          <div class="address">
-            <i class="icofont-google-map"></i>
-            <h4>Location:</h4>
-            <p>806 Avda Moisés Bertoni c/ Pratt Gill, Ñemby, Paraguay</p>
-          </div>
-
-          <div class="email">
-            <i class="icofont-envelope"></i>
-            <h4>Email:</h4>
-            <p>mike.mavc27@gmail.com</p>
-          </div>
-
-          <div class="phone">
-            <i class="icofont-phone"></i>
-            <h4>Phone:</h4>
-            <p>+595 986 755 760</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-8 mt-5 mt-lg-0">
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-          <div class="form-row">
-            <div class="col-md-6 form-group">
-              <input
-                type="text"
-                name="name"
-                class="form-control"
-                id="name"
-                placeholder="Your Name"
-                data-rule="minlen:4"
-                data-msg="Please enter at least 4 characters"
-              />
-              <div class="validate"></div>
-            </div>
-            <div class="col-md-6 form-group">
-              <input
-                type="email"
-                class="form-control"
-                name="email"
-                id="email"
-                placeholder="Your Email"
-                data-rule="email"
-                data-msg="Please enter a valid email"
-              />
-              <div class="validate"></div>
-            </div>
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              name="subject"
-              id="subject"
-              placeholder="Subject"
-              data-rule="minlen:4"
-              data-msg="Please enter at least 4 characters for the subject"
-            />
-            <div class="validate"></div>
-          </div>
-          <div class="form-group">
-            <textarea
-              class="form-control"
-              name="message"
-              rows="5"
-              data-rule="required"
-              data-msg="Please write a message"
-              placeholder="Message"
-            ></textarea>
-            <div class="validate"></div>
-          </div>
-          <div class="mb-3">
-            <div class="loading">Loading...</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your message has been sent. Thank you for contacting me!</div>
-          </div>
-          <div class="text-center">
-            <button type="submit">Send Message</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-  </div>
-</section>
-<!-- Fin Contacto -->
-
-      <!-- End Contact Section -->
-    </main>
-    <!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-      <div class="container">
-        <h3>Miguel Villalba</h3>
-        <p>
-          Senior Backend & Fullstack Developer with 8+ years of experience in healthcare systems, 
-          enterprise applications, and scalable web solutions.
-        </p>
-        <div class="social-links">
-          <a href="https://twitter.com/miguelvillalba" class="twitter" target="_blank"><i class="bx bxl-twitter"></i></a>
-          <a href="https://github.com/MikeRider27" class="github" target="_blank"><i class="bx bxl-github"></i></a>
-          <a href="https://www.facebook.com/miguel.villalba" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
-          <a href="https://www.instagram.com/mike.mavc27" class="instagram" target="_blank"><i class="bx bxl-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/miguel-villalba-dev/" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
-        </div>
-        <div class="copyright">
-          &copy; Copyright <strong><span>Miguel Villalba</span></strong
-          >. All Rights Reserved
-        </div>
-        <div class="credits">
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-      </div>
-    </footer>
-    <!-- End Footer -->
-
-    <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-    <script src="assets/vendor/counterup/counterup.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/venobox/venobox.min.js"></script>
-    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="assets/vendor/typed.js/typed.min.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-  </body>
+<script src="assets/js/main.js"></script>
+</body>
 </html>

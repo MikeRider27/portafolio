@@ -8,10 +8,13 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- Preloader ---------- */
-  window.addEventListener("load", () => {
+  // Don't wait for images/fonts ("load"): DOM-ready is enough to show content.
+  const hidePreloader = () => {
     const pre = document.getElementById("preloader");
     if (pre) { pre.classList.add("done"); setTimeout(() => pre.remove(), 600); }
-  });
+  };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", hidePreloader);
+  else hidePreloader();
 
   /* ---------- Back to top (declared early: onScroll below calls this) ---------- */
   const toTop = document.querySelector(".to-top");
@@ -43,12 +46,14 @@
     const closeMenu = () => {
       navMenu.classList.remove("open");
       navToggle.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
     };
     navToggle.addEventListener("click", () => {
       const willOpen = !navMenu.classList.contains("open");
       navMenu.classList.toggle("open", willOpen);
       navToggle.classList.toggle("is-open", willOpen);
+      navToggle.setAttribute("aria-expanded", String(willOpen));
       document.body.style.overflow = willOpen ? "hidden" : "";
     });
     navMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
@@ -158,8 +163,12 @@
   const projectCards = document.querySelectorAll(".project-card");
   filterBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      filterBtns.forEach(b => b.classList.remove("active"));
+      filterBtns.forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       const filter = btn.getAttribute("data-filter");
       projectCards.forEach(card => {
         const match = filter === "*" || card.getAttribute("data-category") === filter;
@@ -167,21 +176,6 @@
       });
     });
   });
-
-  /* ---------- Testimonials carousel ---------- */
-  const track = document.querySelector(".testi-track");
-  const prevBtn = document.querySelector("[data-testi-prev]");
-  const nextBtn = document.querySelector("[data-testi-next]");
-  if (track && prevBtn && nextBtn) {
-    const scrollByCard = (dir) => {
-      const card = track.querySelector(".testi-card");
-      const gap = 22.4; // matches CSS gap
-      const width = card ? card.getBoundingClientRect().width + gap : 320;
-      track.scrollBy({ left: dir * width, behavior: reducedMotion ? "auto" : "smooth" });
-    };
-    prevBtn.addEventListener("click", () => scrollByCard(-1));
-    nextBtn.addEventListener("click", () => scrollByCard(1));
-  }
 
   /* ---------- Footer year ---------- */
   const yearEl = document.querySelector("[data-year]");

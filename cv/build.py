@@ -444,10 +444,14 @@ COURSES = [
 ]
 
 EDUCATION = {
-    "es": ("<p><b>Licenciatura en Análisis de Sistemas Informáticos</b></p>"
-           "<p><b>Ingeniería en Sistemas Informáticos</b><br><small>Materias finalizadas; tesis pendiente.</small></p>"),
-    "en": ("<p><b>Bachelor's Degree in Computer Systems Analysis</b></p>"
-           "<p><b>Computer Systems Engineering</b><br><small>All coursework completed; thesis pending.</small></p>"),
+    "es": ("<p><b>Licenciatura en Análisis de Sistemas Informáticos</b><br>"
+           "<small>Universidad Tecnológica Intercontinental (UTIC), Paraguay.</small></p>"
+           "<p><b>Ingeniería en Sistemas Informáticos</b><br>"
+           "<small>Universidad Tecnológica Intercontinental (UTIC), Paraguay. Materias finalizadas; tesis pendiente.</small></p>"),
+    "en": ("<p><b>Bachelor's Degree in Computer Systems Analysis</b><br>"
+           "<small>Universidad Tecnológica Intercontinental (UTIC), Paraguay.</small></p>"
+           "<p><b>Computer Systems Engineering</b><br>"
+           "<small>Universidad Tecnológica Intercontinental (UTIC), Paraguay. All coursework completed; thesis pending.</small></p>"),
 }
 LANGS = {"es": ["Español: nativo.", "Inglés: nivel intermedio conversacional."],
          "en": ["Spanish: native.", "English: intermediate, conversational."]}
@@ -521,7 +525,7 @@ def render(profile_key, lang):
 </head>
 <body>
 <header>
-  <h1>MIGUEL VILLALBA</h1>
+  <h1>Miguel Villalba</h1>
   <p class="headline">{e(p['headline'][lang])}</p>
   <p class="contact">
     <span>{e(L['location'])}</span>

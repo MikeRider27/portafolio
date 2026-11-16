@@ -27,6 +27,7 @@ CSS = (ROOT / "cv.css").read_text(encoding="utf-8")
 LABELS = {
     "es": {
         "location": "Ñemby, Paraguay · Disponibilidad para trabajo remoto",
+        "portfolio": "Portafolio",
         "summary": "Perfil profesional",
         "skills": "Competencias técnicas",
         "experience": "Experiencia profesional",
@@ -40,6 +41,7 @@ LABELS = {
     },
     "en": {
         "location": "Ñemby, Paraguay · Available for remote work",
+        "portfolio": "Portfolio",
         "summary": "Professional Summary",
         "skills": "Technical Skills",
         "experience": "Professional Experience",
@@ -533,9 +535,11 @@ def render(profile_key, lang):
     <span><a href="tel:+595986755760">+595 986 755 760</a></span>
   </p>
   <p class="contact">
-    <span><a href="https://www.linkedin.com/in/miguel-villalba-673517181">linkedin.com/in/miguel-villalba-673517181</a></span>
-    <span><a href="https://github.com/MikeRider27">github.com/MikeRider27</a></span>
-    <span><a href="https://mikerider27.github.io/portafolio/">mikerider27.github.io/portafolio</a></span>
+    <span>LinkedIn: <a href="https://www.linkedin.com/in/miguel-villalba-673517181">linkedin.com/in/miguel-villalba-673517181</a></span>
+    <span>GitHub: <a href="https://github.com/MikeRider27">github.com/MikeRider27</a></span>
+  </p>
+  <p class="contact">
+    <span>{L['portfolio']}: <a href="https://mikerider27.github.io/portafolio/">mikerider27.github.io/portafolio</a></span>
   </p>
 </header>
 

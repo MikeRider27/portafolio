@@ -28,6 +28,7 @@ h1{
 }
 .headline{ margin: 2pt 0 6pt; font-size: 11pt; font-weight: 600; color: var(--accent); }
 .contact{ margin: 0; color: var(--muted); font-size: 8.8pt; }
+.contact span{ white-space: nowrap; }
 .contact span + span::before{ content: "  ·  "; color: var(--line); }
 
 section{ margin-top: 10pt; }

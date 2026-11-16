@@ -196,6 +196,18 @@ PROJECTS = {
         ],
         "repo": "https://github.com/MikeRider27/soap-wallet",
     },
+    "ips": {
+        "title": {"es": "IPS y VHL – Resumen clínico internacional (MSPBS)", "en": "IPS & VHL – International Patient Summary (MSPBS)"},
+        "sub": {"es": "PHP · Laravel · HL7 FHIR · IPS · PostgreSQL · Docker (Sail)",
+                "en": "PHP · Laravel · HL7 FHIR · IPS · PostgreSQL · Docker (Sail)"},
+        "bullets": [
+            {"es": "Aplicación integrada con el servidor FHIR del MSPBS y la red GDHCN/RACSEL: visor de Bundles IPS como ficha clínica y búsqueda de documentos por paciente (ITI-67).",
+             "en": "App integrated with the MSPBS FHIR server and the GDHCN/RACSEL network: IPS Bundle viewer rendered as a clinical summary and patient document search (ITI-67)."},
+            {"es": "Generación y validación de Virtual Health Links (QR firmado con PIN y expiración); lista blanca de servidores FHIR contra SSRF.",
+             "en": "Issuance and validation of Virtual Health Links (signed QR with PIN and expiry); FHIR server allow-list against SSRF."},
+        ],
+        "repo": "https://github.com/MikeRider27/IPS_VHL",
+    },
     "sifen": {
         "title": {"es": "Plataforma de facturación electrónica SIFEN", "en": "SIFEN E-Invoicing Platform"},
         "sub": {"es": "Node.js · NestJS · TypeScript · PostgreSQL (Prisma) · Redis + BullMQ · Docker",
@@ -361,7 +373,7 @@ PROFILES = {
                     "en": "Laravel (Eloquent, Sanctum), REST APIs and SOAP services; also Node.js and Spring Boot."},
         "dev_bullet": {"es": "Desarrollo de funcionalidades y servicios con PHP y Laravel (VACUNATE), además de Java y Spring Boot.",
                        "en": "Build features and services with PHP and Laravel (VACUNATE), as well as Java and Spring Boot."},
-        "projects": ["wallet", "vacunate", "comercial"],
+        "projects": ["wallet", "ips", "vacunate", "comercial"],
     },
     "node": {
         "file": "NodeJS",

@@ -1,0 +1,59 @@
+/* Printable résumé — A4, single column, ATS-friendly (real text, no images). */
+@page { size: A4; margin: 14mm 16mm 14mm 16mm; }
+
+:root{
+  --ink: #111827;
+  --muted: #4B5563;
+  --accent: #127A4E;
+  --line: #D1D5DB;
+}
+
+*{ box-sizing: border-box; }
+html{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body{
+  margin: 0;
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 9.6pt;
+  line-height: 1.42;
+  color: var(--ink);
+  background: #fff;
+}
+a{ color: inherit; text-decoration: none; }
+
+header{ border-bottom: 2px solid var(--accent); padding-bottom: 8pt; margin-bottom: 10pt; }
+h1{
+  margin: 0;
+  font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  font-size: 22pt; font-weight: 800; letter-spacing: .5pt;
+}
+.headline{ margin: 2pt 0 6pt; font-size: 11pt; font-weight: 600; color: var(--accent); }
+.contact{ margin: 0; color: var(--muted); font-size: 8.8pt; }
+.contact span + span::before{ content: "  ·  "; color: var(--line); }
+
+section{ margin-top: 10pt; }
+h2{
+  margin: 0 0 5pt;
+  font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10.5pt; font-weight: 800; letter-spacing: 1.2pt; text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid var(--line); padding-bottom: 2pt;
+}
+p{ margin: 0 0 5pt; }
+
+ul{ margin: 2pt 0 0; padding-left: 13pt; }
+li{ margin: 0 0 1.6pt; }
+
+.skills{ margin: 0; padding: 0; list-style: none; }
+.skills li{ display: grid; grid-template-columns: 132pt 1fr; gap: 0 6pt; margin-bottom: 2pt; }
+
+.job, .project{ margin-bottom: 8pt; break-inside: avoid; }
+.job-head{ display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
+.job-head h3{ margin: 0; font-size: 10.2pt; font-weight: 700; }
+.job-head .when{ color: var(--muted); font-size: 8.8pt; white-space: nowrap; }
+.role{ margin: 0; font-style: italic; color: var(--muted); }
+.repo{ margin: 2pt 0 0; font-size: 8.6pt; color: var(--muted); }
+.repo a{ color: var(--accent); }
+
+.two-col{ display: grid; grid-template-columns: 1fr 1fr; gap: 0 18pt; }
+.edu p{ margin-bottom: 3pt; }
+.edu small{ color: var(--muted); }

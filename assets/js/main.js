@@ -92,10 +92,68 @@
     revealEls.forEach(el => el.classList.add("in-view"));
   }
 
+  /* ---------- Language (ES / EN) ----------
+     Spanish lives in the HTML. English lives next to it:
+       data-en="…"              → replaces innerHTML
+       data-en-<attr>="…"       → replaces that attribute (aria-label, alt, content, data-typed…)
+     The Spanish originals are cached on first switch, so no ES dictionary is needed. */
+  const LANG_KEY = "portfolio-lang";
+  const SUPPORTED = ["es", "en"];
+
+  const storage = {
+    get() { try { return localStorage.getItem(LANG_KEY); } catch (_) { return null; } },
+    set(v) { try { localStorage.setItem(LANG_KEY, v); } catch (_) { /* private mode */ } }
+  };
+
+  const initialLang = () => {
+    const fromUrl = new URLSearchParams(location.search).get("lang");
+    if (SUPPORTED.includes(fromUrl)) return fromUrl;
+    const saved = storage.get();
+    if (SUPPORTED.includes(saved)) return saved;
+    return (navigator.language || "es").toLowerCase().startsWith("es") ? "es" : "en";
+  };
+
+  const applyLang = (lang) => {
+    document.querySelectorAll("[data-en]").forEach(el => {
+      if (el.__es === undefined) el.__es = el.innerHTML;
+      el.innerHTML = lang === "en" ? el.getAttribute("data-en") : el.__es;
+    });
+
+    document.querySelectorAll("*").forEach(el => {
+      for (const { name, value } of Array.from(el.attributes)) {
+        if (!name.startsWith("data-en-")) continue;
+        const target = name.slice("data-en-".length);
+        el.__esAttrs = el.__esAttrs || {};
+        if (!(target in el.__esAttrs)) el.__esAttrs[target] = el.getAttribute(target);
+        const next = lang === "en" ? value : el.__esAttrs[target];
+        if (next === null) el.removeAttribute(target); else el.setAttribute(target, next);
+      }
+    });
+
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-lang-opt]").forEach(o =>
+      o.classList.toggle("is-active", o.getAttribute("data-lang-opt") === lang));
+    document.dispatchEvent(new CustomEvent("langchange", { detail: { lang } }));
+  };
+
+  let currentLang = initialLang();
+  if (currentLang !== "es") applyLang(currentLang);
+  else document.querySelectorAll("[data-lang-opt='es']").forEach(o => o.classList.add("is-active"));
+
+  const langToggle = document.getElementById("langToggle");
+  if (langToggle) {
+    langToggle.addEventListener("click", () => {
+      currentLang = currentLang === "es" ? "en" : "es";
+      applyLang(currentLang);
+      storage.set(currentLang);
+    });
+  }
+
   /* ---------- Typed role rotator ---------- */
   const typedEl = document.querySelector("[data-typed]");
   if (typedEl) {
-    const items = (typedEl.getAttribute("data-typed") || "").split("|").map(s => s.trim()).filter(Boolean);
+    const readItems = () => (typedEl.getAttribute("data-typed") || "").split("|").map(s => s.trim()).filter(Boolean);
+    let items = readItems();
     if (items.length) {
       let itemIndex = 0, charIndex = 0, deleting = false;
       const textNode = document.createElement("span");
@@ -125,6 +183,12 @@
         }
         setTimeout(tick, deleting ? 35 : 65);
       };
+      document.addEventListener("langchange", () => {
+        items = readItems();
+        itemIndex = 0; charIndex = 0; deleting = false;
+        textNode.textContent = reducedMotion ? items[0] : "";
+      });
+
       if (reducedMotion) {
         textNode.textContent = items[0];
       } else {
@@ -171,7 +235,8 @@
       btn.setAttribute("aria-pressed", "true");
       const filter = btn.getAttribute("data-filter");
       projectCards.forEach(card => {
-        const match = filter === "*" || card.getAttribute("data-category") === filter;
+        const cats = (card.getAttribute("data-category") || "").split(/\s+/);
+        const match = filter === "*" || cats.includes(filter);
         card.classList.toggle("is-hidden", !match);
       });
     });

@@ -112,7 +112,7 @@ def jobs(dev_bullet):
         },
         {
             "org": {"es": "ITTI / ADIGI EAS", "en": "ITTI / ADIGI EAS"},
-            "when": {"es": "2024 – 2025 · Modalidad remota", "en": "2024 – 2025 · Remote"},
+            "when": {"es": "Mayo 2024 – Abril 2025 · Modalidad remota", "en": "May 2024 – April 2025 · Remote"},
             "role": {"es": "Desarrollador de Software – Backend", "en": "Software Developer – Backend"},
             "bullets": [
                 {"es": "Desarrollo y mantenimiento de funcionalidades backend para sistemas de gestión comercial.",
@@ -129,7 +129,7 @@ def jobs(dev_bullet):
         },
         {
             "org": {"es": "Desarrollo independiente / Freelance", "en": "Independent Development / Freelance"},
-            "when": {"es": "2018 – 2019", "en": "2018 – 2019"},
+            "when": {"es": "Febrero 2018 – Septiembre 2019", "en": "February 2018 – September 2019"},
             "role": {"es": "Desarrollador Full Stack", "en": "Full Stack Developer"},
             "bullets": [
                 {"es": "Desarrollo de sistemas de gestión para restaurantes y servicios de agua.",
@@ -530,6 +530,7 @@ def render(profile_key, lang):
   <p class="contact">
     <span>{e(L['location'])}</span>
     <span><a href="mailto:mike.mavc27@gmail.com">mike.mavc27@gmail.com</a></span>
+    <span><a href="tel:+595986755760">+595 986 755 760</a></span>
   </p>
   <p class="contact">
     <span><a href="https://www.linkedin.com/in/miguel-villalba-673517181">linkedin.com/in/miguel-villalba-673517181</a></span>

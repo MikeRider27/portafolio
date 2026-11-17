@@ -470,7 +470,8 @@ e = html.escape
 
 
 def li(items):
-    return "".join(f"<li>{e(i)}</li>" for i in items)
+    # Literal bullet glyph: Chrome's list markers are not extracted as text, so ATS saw 0 bullets.
+    return "".join(f"<li>•&nbsp;{e(i)}</li>" for i in items)
 
 
 def render(profile_key, lang):
@@ -563,16 +564,15 @@ def render(profile_key, lang):
   <h2>{L['projects']}</h2>{projects_html}
 </section>
 
-<div class="two-col">
-  <section class="edu">
-    <h2>{L['education']}</h2>
-    {EDUCATION[lang]}
-  </section>
-  <section>
-    <h2>{L['languages']}</h2>
-    <ul>{li(LANGS[lang])}</ul>
-  </section>
-</div>
+<section class="edu">
+  <h2>{L['education']}</h2>
+  {EDUCATION[lang]}
+</section>
+
+<section>
+  <h2>{L['languages']}</h2>
+  <ul>{li(LANGS[lang])}</ul>
+</section>
 
 <section>
   <h2>{L['courses']}</h2>
